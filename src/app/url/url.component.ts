@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UrlService } from './url.service';
 
@@ -9,25 +9,21 @@ import { UrlService } from './url.service';
   styleUrls: ['./url.component.css'],
 })
     
-export class UrlComponent implements OnInit {
+export class UrlComponent {
   shortUrl:string;
   shortUrlCode:string;
   errorMessage:string;
 
   constructor(
     private urlService: UrlService
-  ){
-
-  }
-  
-  ngOnInit(): void{}
+  ){ }
 
   onSubmit(userUrlForm: NgForm) {
     this.urlService.shortenUrl(userUrlForm.value.userUrl).subscribe((response: any)=> {
       this.shortUrl =  response.shortUrl;
       this.shortUrlCode = response.urlCode;
     },
-      error => this.errorMessage = error.error
+      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
     );
     userUrlForm.reset();
   }
@@ -36,7 +32,7 @@ export class UrlComponent implements OnInit {
     this.urlService.redirectToUrl(code).subscribe((response:any)=>{
       window.location.href = response.longUrl;
     },
-      error => this.errorMessage = error.error
+      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
     );
   }
 }

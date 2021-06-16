@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     this.adminService.getAdminData().subscribe((response: any) => {
       this.adminData = response;
     },
-      error => this.errorMessage = error.error
+      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
     )
   }
 
