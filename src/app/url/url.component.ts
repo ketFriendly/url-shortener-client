@@ -7,20 +7,20 @@ import { UrlService } from './url.service';
   selector: 'app-url',
   templateUrl: './url.component.html',
   styleUrls: ['./url.component.css'],
-
 })
     
 export class UrlComponent implements OnInit {
   shortUrl:string;
   shortUrlCode:string;
   errorMessage:string;
+
   constructor(
     private urlService: UrlService
   ){
 
   }
   
-  ngOnInit(){}
+  ngOnInit(): void{}
 
   onSubmit(userUrlForm: NgForm) {
     this.urlService.shortenUrl(userUrlForm.value.userUrl).subscribe((response: any)=> {

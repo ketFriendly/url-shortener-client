@@ -1,0 +1,13 @@
+.table-wrapper {
+    overflow: auto;
+    width: 100%;
+    display:inline-block;
+    padding-top: 20px;
+    max-height: 500px;
+}
+
+  .error-message {
+    color: red; 
+    font-weight: bold; 
+    font-size: 1.1rem;
+}

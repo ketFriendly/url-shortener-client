@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class UrlService {
+export class AdminService {
 
   private _url = environment.apiUrl;
 
@@ -12,11 +12,7 @@ export class UrlService {
     private http: HttpClient
   ) { }
 
-  shortenUrl(longUrl: string) {
-    return this.http.post(this._url + `api/url/shorten`, { longUrl: longUrl });
-  }
-
-  redirectToUrl(code: string) {
-    return this.http.get(this._url + `api/${code}`);
+  getAdminData() {
+    return this.http.get(this._url + `api/url/admin`);
   }
 }
