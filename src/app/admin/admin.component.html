@@ -15,7 +15,7 @@
         </tbody>
       </table>
   </div>
-  <div *ngIf="errorMessage">
+  <div *ngIf="errorMessage && !adminData">
     <p class="error-message">{{errorMessage}}</p>
  </div>
 

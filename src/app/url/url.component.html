@@ -34,7 +34,7 @@
             </button>
         </div>
     </div>
-    <div *ngIf="errorMessage">
+    <div *ngIf="errorMessage && !shortUrl">
         <p class="error-message">{{errorMessage}}</p>
     </div>
 </div>
