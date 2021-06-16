@@ -24,7 +24,11 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              },
               "src/styles.css"
+              
             ],
             "scripts": []
           },
@@ -56,7 +60,15 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "localhost": {
+              "fileReplacements": [
+                  {
+                      "replace": "src/environments/environment.ts",
+                      "with": "src/environments/environment.localhost.ts"
+                  }
+              ]
+          }
           }
         },
         "serve": {
@@ -67,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "url-shortener-client:build:production"
+            },
+            "localhost": {
+              "browserTarget": "url-shortener-client:build:localhost"
             }
           }
         },

@@ -1,0 +1,40 @@
+<div class="container">
+    <form #userUrlForm="ngForm" (ngSubmit)="onSubmit(userUrlForm)" ngNativeValidate class="form">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 nopadding">
+                    <input 
+                        type="url" 
+                        class="form-control" 
+                        placeholder="Enter URL"
+                        name="userUrl" 
+                        minlength="9" 
+                        ngModel 
+                        #url="ngModel"
+                        [class.error-boarder]="url.invalid && userUrlForm.submitted" 
+                        required />
+                </div>
+                <div class="col-md-2 nopadding">
+                    <button 
+                        type="submit" 
+                        class="btn btn-success" 
+                        [disabled]="!userUrlForm.valid">
+                            Shorten URL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="shortUrl && shortUrlCode" class="row ">
+        <div class="justify-content-center d-flex col-md-12 nopadding">
+            <button 
+                class="btn btn-info w-100"
+                (click)="redirectToLong(shortUrlCode)">
+                    <b>Redirect to:</b>  {{shortUrl}}
+            </button>
+        </div>
+    </div>
+    <div *ngIf="errorMessage">
+        <p class="error-message">{{errorMessage}}</p>
+    </div>
+</div>

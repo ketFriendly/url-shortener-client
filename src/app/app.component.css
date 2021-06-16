@@ -1,0 +1,8 @@
+
+.nav .nav-link:not(:last-child) {
+    border-right: 1px solid silver;
+}
+
+.nav-tabs .nav-link {
+    border-bottom: none;
+}
