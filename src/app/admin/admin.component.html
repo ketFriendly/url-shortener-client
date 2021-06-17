@@ -15,7 +15,10 @@
         </tbody>
       </table>
   </div>
-  <div *ngIf="errorMessage && !adminData">
-    <p class="error-message">{{errorMessage}}</p>
+  <div *ngIf="errorMessage.length>0 && !adminData">
+    <div *ngFor="let error of errorMessage">
+      <p class="error-message">{{error}}</p>
+    </div>
+    
  </div>
 

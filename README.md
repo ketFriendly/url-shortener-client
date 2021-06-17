@@ -4,6 +4,8 @@ UrlShortenerClient is an app you can use to shorten your URLs and get the list o
 >
 This project was created with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 Bootstrap is used for styling the components.
+>
+On the `main` branch you can find the first code draft and on the `http-branch` you can find the code that implements global HTTP filters. 
 
 ## USAGE - Development server
 

@@ -8,32 +8,37 @@ import { UrlService } from './url.service';
   templateUrl: './url.component.html',
   styleUrls: ['./url.component.css'],
 })
-    
+
 export class UrlComponent {
-  shortUrl:string;
-  shortUrlCode:string;
-  errorMessage:string;
+  shortUrl: string;
+  shortUrlCode: string;
+  errorMessage: string[] = [];
 
   constructor(
     private urlService: UrlService
-  ){ }
+  ) { }
 
   onSubmit(userUrlForm: NgForm) {
-    this.urlService.shortenUrl(userUrlForm.value.userUrl).subscribe((response: any)=> {
-      this.shortUrl =  response.shortUrl;
+    this.errorMessage = [];
+    this.urlService.shortenUrl(userUrlForm.value.userUrl).subscribe((response: any) => {
+      this.shortUrl = response.shortUrl;
       this.shortUrlCode = response.urlCode;
     },
-      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
+    error => this.setErrorMessage(error)
     );
     userUrlForm.reset();
   }
 
   redirectToLong(code: string) {
-    this.urlService.redirectToUrl(code).subscribe((response:any)=>{
+    this.errorMessage = [];
+    this.urlService.redirectToUrl(code).subscribe((response: any) => {
       window.location.href = response.longUrl;
     },
-      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
+      error => this.setErrorMessage(error)
     );
+  }
+  setErrorMessage(error: any){
+    error.error.message ? this.errorMessage = error.error.message.message : this.errorMessage.push("Cannot reach the server"); 
   }
 }
 

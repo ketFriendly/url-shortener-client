@@ -7,8 +7,8 @@ import { AdminService } from './admin.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  adminData: any[] = [];
-  errorMessage: string;
+  adminData: any;
+  errorMessage: string[] = [];;
 
   constructor(
     private adminService: AdminService
@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     this.adminService.getAdminData().subscribe((response: any) => {
       this.adminData = response;
     },
-      error => typeof(error.error) === "string"? this.errorMessage = error.error : this.errorMessage = "Cannot reach the server"
+      error => error.error.message ? this.errorMessage = error.error.message : this.errorMessage.push("Cannot reach the server")
     )
   }
 
